@@ -67,6 +67,34 @@ function formatTime(seenAt: number): string {
   });
 }
 
+function svgEl(name: string, attrs: Record<string, string>): SVGElement {
+  const el = document.createElementNS("http://www.w3.org/2000/svg", name);
+  for (const [key, value] of Object.entries(attrs)) {
+    el.setAttribute(key, value);
+  }
+  return el;
+}
+
+function linkIcon(): SVGSVGElement {
+  const svg = svgEl("svg", {
+    viewBox: "0 0 24 24",
+    width: "16",
+    height: "16",
+    fill: "none",
+    stroke: "currentColor",
+    "stroke-width": "2",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true",
+  }) as SVGSVGElement;
+  svg.append(
+    svgEl("path", { d: "M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" }),
+    svgEl("path", { d: "M12 7v8" }),
+    svgEl("path", { d: "m10 9 2-2 2 2" }),
+  );
+  return svg;
+}
+
 function getFilteredItems(): FeedItem[] {
   const query = searchInput.value.trim().toLowerCase();
   return items.filter(
@@ -116,27 +144,17 @@ function render(): void {
     actions.className = "actions";
 
     const open = document.createElement("a");
-    open.className = "button";
+    open.className = "icon-link";
     open.href = item.url;
-    open.textContent = "Open";
+    open.title = "Open";
+    open.setAttribute("aria-label", "Open");
+    open.append(linkIcon());
     open.addEventListener("click", (event) => {
       event.preventDefault();
       void chrome.tabs.create({ url: item.url });
     });
 
-    const copy = document.createElement("button");
-    copy.type = "button";
-    copy.textContent = "Copy";
-    copy.addEventListener("click", async () => {
-      const payload = item.text || item.url;
-      await navigator.clipboard.writeText(payload);
-      copy.textContent = "Copied";
-      window.setTimeout(() => {
-        copy.textContent = "Copy";
-      }, 1200);
-    });
-
-    actions.append(open, copy);
+    actions.append(open);
     li.append(meta, text, actions);
     listEl.append(li);
   }

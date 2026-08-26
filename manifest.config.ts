@@ -6,7 +6,7 @@ export default defineManifest({
   description:
     "Remember tweets you already saw so an accidental refresh does not lose them.",
   version: "0.1.0",
-  permissions: ["storage", "clipboardWrite"],
+  permissions: ["storage"],
   host_permissions: ["https://x.com/*", "https://twitter.com/*"],
   action: {
     default_popup: "src/popup.html",
