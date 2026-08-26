@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twitter Feed Catcher</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Feed Catcher</h1>
+      <p id="count" class="count"></p>
+    </header>
+    <label class="search-label">
+      <span class="sr-only">Search saved tweets</span>
+      <input
+        id="search"
+        type="search"
+        placeholder="Search text, handle, or id"
+        autocomplete="off"
+      />
+    </label>
+    <ul id="list" class="list"></ul>
+    <script type="module" src="./popup.ts"></script>
+  </body>
+</html>

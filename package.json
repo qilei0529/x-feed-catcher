@@ -1,0 +1,17 @@
+{
+  "name": "feed-catcher",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Chrome extension that remembers X/Twitter feed items so an accidental refresh does not lose them.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.2.0",
+    "@types/chrome": "^0.1.4",
+    "typescript": "^5.9.2",
+    "vite": "^5.4.19"
+  }
+}
