@@ -9,7 +9,23 @@
   <body>
     <header class="header">
       <h1>Feed Catcher</h1>
-      <p id="count" class="count"></p>
+      <div class="header-meta">
+        <p id="count" class="count"></p>
+        <button
+          type="button"
+          id="trash"
+          class="trash"
+          title="删除当前列表"
+          aria-label="删除当前列表"
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M9 3h6l1 2h5v2H3V5h5l1-2zm1 6h2v9h-2V9zm4 0h2v9h-2V9zM6 8h12l-1 13H7L6 8z"
+            />
+          </svg>
+        </button>
+      </div>
     </header>
     <label class="search-label">
       <span class="sr-only">Search saved tweets</span>
@@ -20,6 +36,40 @@
         autocomplete="off"
       />
     </label>
+    <div class="filters">
+      <div class="time-filters" role="tablist" aria-label="时间">
+        <button type="button" class="chip is-active" data-range="today">今日</button>
+        <button type="button" class="chip" data-range="yesterday">昨天</button>
+        <button type="button" class="chip" data-range="week">一周内</button>
+        <button type="button" class="chip" data-range="older">过去</button>
+      </div>
+      <div class="level-filters" aria-label="浏览量">
+        <button
+          type="button"
+          class="level-rect is-on"
+          data-level="high"
+          aria-pressed="true"
+          title="超过 1万"
+          aria-label="超过 1万"
+        ></button>
+        <button
+          type="button"
+          class="level-rect is-on"
+          data-level="mid"
+          aria-pressed="true"
+          title="超过 1k"
+          aria-label="超过 1k"
+        ></button>
+        <button
+          type="button"
+          class="level-rect is-on"
+          data-level="low"
+          aria-pressed="true"
+          title="不超过 1k"
+          aria-label="不超过 1k"
+        ></button>
+      </div>
+    </div>
     <ul id="list" class="list"></ul>
     <script type="module" src="./popup.ts"></script>
   </body>

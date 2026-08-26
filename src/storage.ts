@@ -4,6 +4,7 @@ export type FeedItem = {
   author: string;
   url: string;
   seenAt: number;
+  views: number;
 };
 
 export const STORAGE_KEY = "feedItems";
@@ -26,6 +27,7 @@ export async function upsertFeedItem(item: FeedItem): Promise<void> {
       text: item.text || prev.text,
       author: item.author || prev.author,
       url: item.url || prev.url,
+      views: Math.max(prev.views ?? 0, item.views ?? 0),
     };
   } else {
     items.unshift(item);
@@ -35,5 +37,14 @@ export async function upsertFeedItem(item: FeedItem): Promise<void> {
     items.length = MAX_ITEMS;
   }
 
+  await chrome.storage.local.set({ [STORAGE_KEY]: items });
+}
+
+export async function removeFeedItems(ids: string[]): Promise<void> {
+  if (ids.length === 0) {
+    return;
+  }
+  const idSet = new Set(ids);
+  const items = (await getFeedItems()).filter((item) => !idSet.has(item.id));
   await chrome.storage.local.set({ [STORAGE_KEY]: items });
 }
