@@ -88,9 +88,9 @@ function linkIcon(): SVGSVGElement {
     "aria-hidden": "true",
   }) as SVGSVGElement;
   svg.append(
-    svgEl("path", { d: "M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" }),
-    svgEl("path", { d: "M12 7v8" }),
-    svgEl("path", { d: "m10 9 2-2 2 2" }),
+    svgEl("path", { d: "M5 11v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7" }),
+    svgEl("path", { d: "M12 4v8" }),
+    svgEl("path", { d: "m8 8 4-4 4 4" }),
   );
   return svg;
 }

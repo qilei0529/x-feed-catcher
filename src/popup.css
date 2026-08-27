@@ -217,13 +217,17 @@ input[type="search"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(15, 20, 25, 0.08);
   color: #536471;
   text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .icon-link:hover {
+  background: #dbeafe;
   color: #1d9bf0;
 }
 
